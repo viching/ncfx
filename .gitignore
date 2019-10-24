@@ -1,0 +1,12 @@
+# Editor's config directories
+.vscode
+.idea
+
+# Dependency directories
+node_modules
+
+# MacOS related files
+*.DS_Store
+.AppleDouble
+.LSOverride
+._*

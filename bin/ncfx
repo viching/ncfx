@@ -1,0 +1,98 @@
+#!/usr/bin/env node
+
+
+let ncfx = require('../lib/index'),
+    args = process.argv.slice(2),
+    source, dest;
+
+if (args.length < 2) {
+    console.error('Usage: ncfx [source] [destination]  [--operate=:cp,bc,pb] [--filter=filter] [--limit=concurrency limit]');
+    process.exit(1);
+}
+
+// parse arguments the hard way
+function startsWith(str, prefix) {
+    return str.substr(0, prefix.length) == prefix;
+}
+
+const options = {};
+args.forEach(function (arg) {
+    if (startsWith(arg, "--operate=")) {
+        options.operate = arg.split('=', 2)[1];
+        return;
+    }
+    if (startsWith(arg, "--limit=")) {
+        options.limit = parseInt(arg.split('=', 2)[1], 10);
+        return;
+    }
+    // 由于复杂的正则表达式书写比较麻烦，这里做一些优化
+    if (startsWith(arg, "--filter=")) {
+        let filter = arg.split('=', 2)[1];
+        let suffix = filter.split("_").slice(1).join("|");
+        if (startsWith(filter, "in_")) {
+            // 包含
+            filter = "^.*\\.(" + suffix + ")$";
+        } else if (startsWith(filter, "ex_")) {
+            // 排除
+            filter = "^((?!\\.(" + suffix + ")$).)*$";
+        }
+        options.filter = new RegExp(filter);
+        return;
+    }
+    if (startsWith(arg, "--stoponerr")) {
+        options.stopOnErr = true;
+    }
+});
+
+if(options.operate == 'cp'){
+    ncfx.copy(args[0], args[1], options, function (err) {
+        if (Array.isArray(err)) {
+            console.error('There were errors during the copy.');
+            err.forEach(function (err) {
+                console.error(err.stack || err.message);
+            });
+            process.exit(1);
+        }
+        else if (err) {
+            console.error('An error has occurred.');
+            console.error(err.stack || err.message);
+            process.exit(1);
+        }
+    });
+}
+
+if(options.operate == 'bc'){
+    ncfx.backup(args[0], args[1], options, function (err) {
+        if (Array.isArray(err)) {
+            console.error('There were errors during the zip.');
+            err.forEach(function (err) {
+                console.error(err.stack || err.message);
+            });
+            process.exit(1);
+        }
+        else if (err) {
+            console.error('An error has occurred.');
+            console.error(err.stack || err.message);
+            process.exit(1);
+        }
+    });
+}
+
+if(options.operate == 'pb'){
+    ncfx.publish(args[0], args[1], options, function (err) {
+        if (Array.isArray(err)) {
+            console.error('There were errors during the publish.');
+            err.forEach(function (err) {
+                console.error(err.stack || err.message);
+            });
+            process.exit(1);
+        }
+        else if (err) {
+            console.error('An error has occurred.');
+            console.error(err.stack || err.message);
+            process.exit(1);
+        }
+    });
+}
+
+

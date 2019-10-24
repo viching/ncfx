@@ -1,0 +1,31 @@
+{
+  "name": "ncfx",
+  "version": "0.0.2",
+  "author": "viching <viching.com>",
+  "description": "copy static file for website",
+  "bin": {
+    "ncfx": "./bin/ncfx"
+  },
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  },
+  "main": "./lib/ncfx.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/viching/ncfx.git"
+  },
+  "keywords": [
+    "cli",
+    "copy"
+  ],
+  "license": "MIT",
+  "engine": {
+    "node": ">=8.10"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "dependencies": {
+    "archiver": "^3.1.1"
+  }
+}
