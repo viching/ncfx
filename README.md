@@ -1,26 +1,21 @@
-# ncfx - Asynchronous recursive file & directory copying
+# ncfx - for copy,backup,publish project
 
-[![Build Status](https://secure.travis-ci.org/AvianFlu/ncfx.png)](http://travis-ci.org/AvianFlu/ncfx)
-
-Think `cp -r`, but pure node, and asynchronous.  `ncfx` can be used both as a CLI tool and programmatically.
+copy some static file for build, or compress some project or directory to other directory as zip file.
+this repository base on ncp.
 
 ## Command Line usage
 
 Usage is simple: `ncfx [source] [dest] [--operate=cp|bc|pb] [--limit=concurrency limit]
 [--filter=filter] --stopOnErr`
 
-The 'filter' is a Regular Expression - matched files will be copied.
-
-The 'concurrency limit' is an integer that represents how many pending file system requests `ncfx` has at a time.
-
-'stoponerr' is a boolean flag that will tell `ncfx` to stop immediately if any
-errors arise, rather than attempting to continue while logging errors. The default behavior is to complete as many copies as possible, logging errors along the way.
-
-If there are no errors, `ncfx` will output `done.` when complete.  If there are errors, the error messages will be logged to `stdout` and to `./ncfx-debug.log`, and the copy operation will attempt to continue.
+soure: 源文件夹
+dest:目标文件夹或目标文件
+operate: 操作类型：cp 即 copy, bc 即 backup, pb 即 publish
+limit: 限制同时处理的最大文件数
+filter: ex_ 表示排除文件后缀, in_ 表示包含文件后缀， 后缀名条件在标识符后面用`|`隔开，如：ex_ts|json
+stopOnErr: 错误回调函数
 
 ## Programmatic usage
-
-Programmatic usage of `ncfx` is just as simple.  The only argument to the completion callback is a possible error.  
 
 ```javascript
 var ncfx = require('ncfx').ncfx;
@@ -64,32 +59,7 @@ You can also call ncfx like `ncfx(source, destination, options, callback)`.
 
 Please open an issue if any bugs arise.  As always, I accept (working) pull requests, and refunds are available at `/dev/null`.
 
-
-该正则表达式不能生效：
-./bin/ncfx ./lib ./build --filter=^((?!\\.ts$).)*$
-
-常见的一些特殊字符
-* 任意个任意字符
-? 一个任意字符
-[..] []中的任意一个字符,这里也类似于正则表达式,中括号内可以是具体的一些字符,如[abcd]也可以是用-指定的一个范围,如[a-d]
-# 注释
-(空格) 参数分隔符
-cmd 命令替换
-| 管道
-& 后台执行
-; 命令分隔符(可以在同一行执行两个命令,用;分割)
-~ 用户home目录
-
-转义:
-./bin/ncfx ./lib ./build --filter=^\(\(\?\!\\.ts$\).\)\*\$
-
-./bin/ncfx ./lib ./build --filter=^\(\(\?\!\\.ts$\).\)\*$
-
-// 包含
-./bin/ncfx ./lib ./build --filter=in_js
-// 排除
-./bin/ncfx ./lib ./build --filter=ex_ts
-
+## test example
 copy:
 ./bin/ncfx E:\\project-10-02\\viching-server-workflow\\build ./build --operate=cp --filter=ex_ts
 
