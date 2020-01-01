@@ -1,7 +1,7 @@
-# ncfx - for copy,backup,product project
+# ncfx
 
-copy some static file for build, or compress some project or directory to other directory as zip file.  
-this repository base on ncp.
+该项目主要功能用户方便项目开发，提供一些方便快捷的命令行功能。
+
 
 # 安装
 
