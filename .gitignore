@@ -10,3 +10,7 @@ node_modules
 .AppleDouble
 .LSOverride
 ._*
+
+test
+package-lock.json
+README_LOCAL.md

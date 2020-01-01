@@ -1,6 +1,6 @@
 {
   "name": "ncfx",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "author": "viching <viching.com>",
   "description": "copy static file for website",
   "bin": {
@@ -26,6 +26,8 @@
     "test": "mocha -R spec"
   },
   "dependencies": {
-    "archiver": "^3.1.1"
+    "archiver": "^3.1.1",
+    "child_process": "^1.0.2",
+    "minimatch": "^3.0.4"
   }
 }

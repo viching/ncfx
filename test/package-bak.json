@@ -1,0 +1,40 @@
+{
+  "dest": "D:\\workspace-pool\\product\\server",
+  "main": "app.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "servers": [
+    {
+      "name": "server-auth",
+      "source": "D:\\workspace\\project-10-02\\viching-server-auth"
+    },
+    {
+      "name": "server-file",
+      "source": "D:\\workspace\\project-10-02\\viching-server-file"
+    },
+    {
+      "name": "server-resource",
+      "source": "D:\\workspace\\project-10-02\\viching-server-resource"
+    },
+    {
+      "name": "server-workflow",
+      "source": "D:\\workspace\\project-10-02\\viching-server-workflow"
+    },
+    {
+      "name": "server-ams",
+      "source": "D:\\workspace\\project-10-02\\viching-server-ams"
+    },
+    {
+      "name": "server-cms",
+      "source": "D:\\workspace\\project-10-02\\viching-server-cms"
+    },
+    {
+      "name": "server-im",
+      "source": "D:\\workspace\\project-11-21\\viching-server-im"
+    }
+  ],
+  "dependencies": {
+
+  }
+}
