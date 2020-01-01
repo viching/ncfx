@@ -30,28 +30,40 @@ cnpm install ncfx@latest -g
 
 ## 测试案例
 copy:
-ncfx copy ./src ./build --f='!**/*.ts'
-ncfx copy ./src ./build --f='!**/*.ts,!**/*.map'
-ncfx copy ./src ./build --f='**/*.map'
-ncfx copy ./src./build --f='**/repository/**,!**/*.ts'
+```text
+ncfx copy ./src ./build --f='!**/*.ts'  
+ncfx copy ./src ./build --f='!**/*.ts,!**/*.map'  
+ncfx copy ./src ./build --f='**/*.map'  
+ncfx copy ./src./build --f='**/repository/**,!**/*.ts'  
+```
 
-zip
-.ncfx zip
+zip  
+```text
+.ncfx zip  
 .ncfx zip D:\\temp
+```
 
 backup:
+```text
 ncfx backup D:\\workflow D:\\backup
+```
 
-product:
-ncfx product D:\\workflow D:\\product 
+product:  
+```text
+ncfx product D:\\workflow D:\\product   
+```
 
-merge:
-ncfx merge D:\\test\\package.json
-ncfx merge D:\\test\\package.json --filter='!**/*.map'
+merge:  
+```text
+ncfx merge D:\\test\\package.json  
+ncfx merge D:\\test\\package.json --filter='!**/*.map'  
+```
 
-generate
-ncfx generate D:\\common index
-ncfx generate class xx.ts
+generate  
+```text
+ncfx generate D:\\common index  
+ncfx generate class xx.ts  
+```
 
 
 
